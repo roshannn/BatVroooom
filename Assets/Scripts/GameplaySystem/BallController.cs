@@ -1,23 +1,77 @@
+﻿using System;
 using UnityEngine;
+public class BallController : MonoBehaviour {
+    [SerializeField] private Rigidbody2D ballRb;
 
-public class BallController : MonoBehaviour
-{
-    public float hitForce = 10f;
-
-    void OnCollisionEnter2D(Collision2D collision) {
-            Rigidbody2D rb = GetComponent<Rigidbody2D>();
-
-            // Step 1: Get incoming velocity
-            Vector2 incoming = rb.linearVelocity.normalized;
-
-            // Step 2: Get bat's local X axis (right direction)
-            Vector2 batForward = collision.collider.transform.right;
-
-            // Step 3: Reflect the incoming vector based on bat's X-axis
-            Vector2 reflected = Vector2.Reflect(incoming, batForward).normalized;
-
-            // Step 4: Apply force in the reflected direction
-            rb.linearVelocity = Vector2.zero; // stop current motion
-            rb.AddForce(reflected * hitForce, ForceMode2D.Impulse);
+    [SerializeField] private Transform onSideWicket;
+    [SerializeField] private Transform offSideWicket;
+    public BallDataContainer ballDataContainer;
+    private Vector2 startPos;
+    private void Awake() {
+        startPos = transform.position;
     }
+
+    public void LaunchBall() {
+        BallData currBallData = ballDataContainer.GetBallData(Utility.GetRandomEnumValue<BallType>());
+        Debug.Log($"Ball type: {currBallData.ballType}");
+        transform.position = startPos;
+        Vector2 lengthPos = GetBouncePos(currBallData.length);
+
+        float xDis = lengthPos.x - startPos.x;
+        float yDis = lengthPos.y - startPos.y;
+        float t = Mathf.Max(1e-4f, currBallData.time); 
+
+        float g = Physics2D.gravity.y; // usually negative (~ -9.81)
+
+        // Initial velocity components required to hit (xDis, yDis) in time t
+        float vx = xDis / t;
+        float vy = (yDis - 0.5f * g * t * t) / t; // note: g is negative, so minus here
+
+        // Angle (radians). Use Atan2 for robustness.
+        float angleRad = Mathf.Atan2(vy, vx);
+        float angleDeg = angleRad * Mathf.Rad2Deg;
+        Debug.Log($"θ = {angleDeg:F2}°");
+        DebugBouncePos(lengthPos);
+
+        ballRb.linearVelocity = new Vector2(vx, vy);
+
+    }
+
+    GameObject debug;
+    private void DebugBouncePos(Vector2 lengthPos) {
+        if(debug == null) {
+            debug = new GameObject();
+        }
+        debug.transform.position = lengthPos;
+    }
+
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.B)) {
+            LaunchBall();
+        }
+        if (Input.GetKeyDown(KeyCode.R)) {
+            ResetBall();
+        }
+    }
+
+    private void ResetBall() {
+        ballRb.linearVelocity = Vector2.zero;
+        ballRb.angularVelocity = 0;
+        transform.position = startPos;
+    }
+
+    public Vector2 GetBouncePos(float length01) {
+        float t = Mathf.Clamp01(length01);
+        Vector2 a = offSideWicket.position;
+        a.y = -4.5f;
+        Vector2 b = onSideWicket.position;
+        b.y = -4.5f;
+
+        // Interpolate along the pitch line so rotation/placement doesn’t matter
+        return Vector2.Lerp(a, b, t);
+    }
+}
+
+public enum BallType {
+    Short, Medium, GoodLength
 }
