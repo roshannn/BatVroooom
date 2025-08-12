@@ -5,6 +5,9 @@ public class BallController : MonoBehaviour {
 
     [SerializeField] private Transform onSideWicket;
     [SerializeField] private Transform offSideWicket;
+
+    [SerializeField] private BoxCollider2D pitchCollider;
+
     public BallDataContainer ballDataContainer;
     private Vector2 startPos;
     private void Awake() {
@@ -14,6 +17,7 @@ public class BallController : MonoBehaviour {
     public void LaunchBall() {
         BallData currBallData = ballDataContainer.GetBallData(Utility.GetRandomEnumValue<BallType>());
         Debug.Log($"Ball type: {currBallData.ballType}");
+        pitchCollider.sharedMaterial = currBallData.pitchMaterial;
         transform.position = startPos;
         Vector2 lengthPos = GetBouncePos(currBallData.length);
 

@@ -17,6 +17,6 @@ public class BallDataContainer : ScriptableObject
 public class BallData {
 	public BallType ballType;
 	public float length;
-	public float speed;
 	public float time;
+	public PhysicsMaterial2D pitchMaterial;
 }

@@ -963,9 +963,8 @@ MonoBehaviour:
   ballRb: {fileID: 712101136}
   onSideWicket: {fileID: 1375807994}
   offSideWicket: {fileID: 1893874488}
+  pitchCollider: {fileID: 571436608}
   ballDataContainer: {fileID: 11400000, guid: 99e02435b12b5b34f94f9105ee77eab4, type: 2}
-  gravityScaleOverride: -1
-  preferredArc: 0
 --- !u!1 &752388484
 GameObject:
   m_ObjectHideFlags: 0
@@ -1311,7 +1310,7 @@ GameObject:
   - component: {fileID: 1375807994}
   - component: {fileID: 1375807995}
   m_Layer: 0
-  m_Name: Stump
+  m_Name: Onstump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1613,42 +1612,33 @@ MonoBehaviour:
   fillBar: {fileID: 452247735}
   idleRPM: 1000
   maxRPM: 9000
-  accelerationFactor: 3000
+  accelerationFactor: 5000
   accelerationCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: -0.89298946
-      outSlope: -0.89298946
+      inSlope: -0.14896226
+      outSlope: -0.14896226
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.337201
-      value: 0.69888306
-      inSlope: -2.4193935
-      outSlope: -2.4193935
-      tangentMode: 0
+      time: 0.77882713
+      value: 0.88398415
+      inSlope: -0.37626705
+      outSlope: -0.49948403
+      tangentMode: 1
       weightedMode: 0
-      inWeight: 0.054718122
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.59349436
-      value: 0.17509596
-      inSlope: -1.1757182
-      outSlope: -1.1757182
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
+      inWeight: 0.0476118
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 0.05
-      inSlope: -0.30773488
-      outSlope: -0.30773488
+      value: 0.7
+      inSlope: -0.83185685
+      outSlope: -0.83185685
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -1727,8 +1717,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  wheelieResetSpeed: 30
-  rpmResetSpeed: 0
+  wheelieResetSpeed: 55
+  rpmResetSpeed: 3000
   idleAngle: 0
 --- !u!4 &1426398778
 Transform:
@@ -1762,7 +1752,7 @@ GameObject:
   - component: {fileID: 1893874488}
   - component: {fileID: 1893874489}
   m_Layer: 0
-  m_Name: Stump (1)
+  m_Name: Offstump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1881,6 +1871,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 662169627}
     m_Modifications:
+    - target: {fileID: 7901459683744240474, guid: 9f0301ea7976e8c4c8d8f346ebfc71eb, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: adcebc386311cf442ada9e8605f2f937, type: 2}
     - target: {fileID: 8037317473837824064, guid: 9f0301ea7976e8c4c8d8f346ebfc71eb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
