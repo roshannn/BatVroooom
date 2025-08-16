@@ -772,6 +772,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 662169627}
+  - component: {fileID: 662169628}
   m_Layer: 0
   m_Name: BatSpawnPoint
   m_TagString: Untagged
@@ -787,14 +788,28 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 662169626}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.69, y: 1.4300001, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.69, y: 1.63, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1518258612}
   m_Father: {fileID: 752388485}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &662169628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662169626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbae945b0e2f215458bdc010bcaa829d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  batTransform: {fileID: 0}
+  rotationSpeed: 2
 --- !u!1 &712101131
 GameObject:
   m_ObjectHideFlags: 0
@@ -1889,7 +1904,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8037317473837824064, guid: 9f0301ea7976e8c4c8d8f346ebfc71eb, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.92387956
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8037317473837824064, guid: 9f0301ea7976e8c4c8d8f346ebfc71eb, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1901,7 +1916,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8037317473837824064, guid: 9f0301ea7976e8c4c8d8f346ebfc71eb, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.38268343
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8037317473837824064, guid: 9f0301ea7976e8c4c8d8f346ebfc71eb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1913,7 +1928,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8037317473837824064, guid: 9f0301ea7976e8c4c8d8f346ebfc71eb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 45
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8279424658381173257, guid: 9f0301ea7976e8c4c8d8f346ebfc71eb, type: 3}
       propertyPath: m_Name

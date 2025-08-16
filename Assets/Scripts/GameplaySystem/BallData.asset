@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballData:
   - ballType: 0
-    length: 0.2
-    time: 0.2
-    pitchMaterial: {fileID: 6200000, guid: c3e48e2784770c9459b3cac02bb80285, type: 2}
+    length: 0.7
+    time: 1
+    pitchMaterial: {fileID: 6200000, guid: 6a19798ec60f3a14ab8bf18aabfb6912, type: 2}
   - ballType: 1
-    length: 0.2
-    time: 0.2
-    pitchMaterial: {fileID: 6200000, guid: c3e48e2784770c9459b3cac02bb80285, type: 2}
+    length: 0.7
+    time: 1
+    pitchMaterial: {fileID: 6200000, guid: 6a19798ec60f3a14ab8bf18aabfb6912, type: 2}
   - ballType: 2
-    length: 0.2
-    time: 0.2
-    pitchMaterial: {fileID: 6200000, guid: c3e48e2784770c9459b3cac02bb80285, type: 2}
+    length: 0.7
+    time: 1
+    pitchMaterial: {fileID: 6200000, guid: 6a19798ec60f3a14ab8bf18aabfb6912, type: 2}
