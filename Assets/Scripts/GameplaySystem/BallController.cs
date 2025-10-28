@@ -2,6 +2,7 @@
 using UnityEngine;
 public class BallController : MonoBehaviour {
     [SerializeField] private Rigidbody2D ballRb;
+    public Vector3 ballDirection => ballRb.linearVelocity.normalized;
 
     [SerializeField] private Transform onSideWicket;
     [SerializeField] private Transform offSideWicket;
@@ -55,12 +56,16 @@ public class BallController : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.R)) {
             ResetBall();
+            ResetToInitialPosition();
         }
     }
 
     private void ResetBall() {
         ballRb.linearVelocity = Vector2.zero;
         ballRb.angularVelocity = 0;
+    }
+
+    private void ResetToInitialPosition() {
         transform.position = startPos;
     }
 
@@ -73,6 +78,11 @@ public class BallController : MonoBehaviour {
 
         // Interpolate along the pitch line so rotation/placement doesn’t matter
         return Vector2.Lerp(a, b, t);
+    }
+
+    public void ApplyLinearVelocity(Vector2 direction,float magnitude) {
+        ResetBall();
+        ballRb.linearVelocity = magnitude * direction;
     }
 }
 
