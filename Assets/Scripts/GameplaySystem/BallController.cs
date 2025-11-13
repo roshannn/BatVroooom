@@ -1,7 +1,9 @@
 ﻿using System;
 using UnityEngine;
+using WAS.EventBus;
+
 public class BallController : MonoBehaviour {
-    [SerializeField] private Rigidbody2D ballRb;
+    [SerializeField] public Rigidbody2D ballRb;
     public Vector3 ballDirection => ballRb.linearVelocity.normalized;
 
     [SerializeField] private Transform onSideWicket;
@@ -13,6 +15,16 @@ public class BallController : MonoBehaviour {
     private Vector2 startPos;
     private void Awake() {
         startPos = transform.position;
+    }
+
+    private void OnEnable() {
+        GameEventBus.Subscribe<StartBowling>(LaunchBall);
+    }
+    private void OnDisable() {
+        GameEventBus.Unsubscribe<StartBowling>(LaunchBall);
+    }
+    private void LaunchBall(StartBowling obj) {
+        LaunchBall();
     }
 
     public void LaunchBall() {
@@ -60,7 +72,7 @@ public class BallController : MonoBehaviour {
         }
     }
 
-    private void ResetBall() {
+    public void ResetBall() {
         ballRb.linearVelocity = Vector2.zero;
         ballRb.angularVelocity = 0;
     }

@@ -1,10 +1,23 @@
 using UnityEngine;
+using WAS.EventBus;
 
 public class BatRotation : MonoBehaviour {
     public Transform batTransform;
 
     private void Awake() {
         batTransform = this.transform;
+    }
+    private void OnEnable() {
+        GameEventBus.Subscribe<SetBatRotation>(SetRotation);
+    }
+
+    private void OnDisable() {
+        GameEventBus.Unsubscribe<SetBatRotation>(SetRotation);
+    }
+
+    private void SetRotation(SetBatRotation obj) {
+        obj.value = Mathf.Abs(obj.value - 1);
+        SetRotation(obj.value);
     }
     public void SetRotation(float value01) {
         Vector3 currentRot = batTransform.eulerAngles;
