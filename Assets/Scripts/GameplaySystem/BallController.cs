@@ -5,6 +5,7 @@ using WAS.EventBus;
 public class BallController : MonoBehaviour {
     [SerializeField] public Rigidbody2D ballRb;
     public Vector3 ballDirection => ballRb.linearVelocity.normalized;
+    public float ballMagnitude => ballRb.linearVelocity.magnitude;
 
     [SerializeField] private Transform onSideWicket;
     [SerializeField] private Transform offSideWicket;

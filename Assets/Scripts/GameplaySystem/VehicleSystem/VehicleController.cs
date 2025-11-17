@@ -51,22 +51,22 @@ public class VehicleController : MonoBehaviour {
     }
     private void RevEngine(RevButtonPressed obj) {
         VehicleState = VehicleState.StateRev;
-        Debug.Log(VehicleState);
+        //Debug.Log(VehicleState);
     }
 
     private void LaunchWheelie(RevButtonReleased obj) {
         VehicleState = VehicleState.StateWheelie;
         SetWheelieSpeed();
         SetWheelieAngle();
-        Debug.Log(VehicleState);
+        //Debug.Log(VehicleState);
     }
     private void SetWheelieSpeed() {
-        float normalizedRPM = GetNomralizedRPM();
+        float normalizedRPM = GetNormalizedRPM();
         wheelieSpeed = wheelieSpeedCurve.Evaluate(normalizedRPM) * maxWheelieSpeed;
     }
 
     private void SetWheelieAngle() {
-        float normalizedRPM = GetNomralizedRPM();
+        float normalizedRPM = GetNormalizedRPM();
         wheelieAngle = wheelieAngleCurve.Evaluate(normalizedRPM) * maxWheelieAngle;
     }
 
@@ -74,7 +74,7 @@ public class VehicleController : MonoBehaviour {
 
     private void Update() {
         if (VehicleState == VehicleState.StateRev) {
-            float calcRPM = currentRPM + (accelerationCurve.Evaluate(GetNomralizedRPM()) * accelerationFactor * Time.deltaTime);
+            float calcRPM = currentRPM + (accelerationCurve.Evaluate(GetNormalizedRPM()) * accelerationFactor * Time.deltaTime);
             UpdateRPM(calcRPM);
         } else if (VehicleState == VehicleState.StateWheelie) {
             currAngle += wheelieSpeed * Time.deltaTime;
@@ -98,7 +98,7 @@ public class VehicleController : MonoBehaviour {
     }
 
 
-    private float GetNomralizedRPM() {
+    private float GetNormalizedRPM() {
         return (currentRPM - idleRPM) / (maxRPM - idleRPM);
     }
 
