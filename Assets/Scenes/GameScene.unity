@@ -676,6 +676,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vehicleController: {fileID: 1426398777}
+  batBladeCollider: {fileID: 455466337}
+--- !u!61 &455466337 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 7901459683744240474, guid: 9f0301ea7976e8c4c8d8f346ebfc71eb, type: 3}
+  m_PrefabInstance: {fileID: 3689136932472876315}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2164,26 +2170,26 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0.2
-      inSlope: 1.3370159
-      outSlope: 1.3370159
+      inSlope: 0.8140626
+      outSlope: 0.8140626
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.50976944
-      value: 0.8815698
-      inSlope: 0.4113321
-      outSlope: 0.4113321
+      time: 0.8604718
+      value: 0.9004779
+      inSlope: 1.4018064
+      outSlope: 1.4018064
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.07881013
-      outWeight: 0.07343745
+      inWeight: 0.024880854
+      outWeight: 0.12825939
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 0.2415806
-      outSlope: 0.2415806
+      inSlope: 0.7132759
+      outSlope: 0.7132759
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
