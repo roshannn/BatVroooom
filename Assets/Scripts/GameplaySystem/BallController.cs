@@ -115,7 +115,7 @@ public class BallController : MonoBehaviour {
 }
 
 public enum BallType {
-    Short, Medium, GoodLength
+    Short, Medium, GoodLength, Variation1,Variation2
 }
 
 public enum BallState {

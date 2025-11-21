@@ -8,6 +8,7 @@ public class CollisionSystem : MonoBehaviour {
     [SerializeField]private VehicleController vehicleController;
     [SerializeField]private BoxCollider2D batBladeCollider;
     [SerializeField]private BallController ballController;
+    [SerializeField]private BatRotation batRotation;
     
     Vector2 ballDir;
     private void OnCollisionEnter2D(Collision2D collision) {
@@ -31,7 +32,7 @@ public class CollisionSystem : MonoBehaviour {
             // 4. Calculate Multiplier
             // Example Glancing: (|0| + 1) * 2 = 2x multiplier
             float dotOffset = ballController.GetCurrentDotOffset;
-            float multiplier = (Mathf.Abs(dotProduct)+ dotOffset) * 2f;
+            float multiplier = (Mathf.Abs(dotProduct)+ dotOffset*batRotation.GetRotationFactor()) * 2f;
             Debug.Log($"Dot: {dotProduct:F2} | Multiplier: {multiplier}");
 
             float wheelieMultiplier = vehicleController.wheelieSpeed * ballController.GetWheelieMultiplier/ 100f; 

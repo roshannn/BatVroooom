@@ -19,3 +19,7 @@ MonoBehaviour:
     ballData: {fileID: 11400000, guid: 4c7e805f96bd61243b0dd9153cea7ad4, type: 2}
   - ballType: 2
     ballData: {fileID: 11400000, guid: 0b716013d9af00f4781579856798ea86, type: 2}
+  - ballType: 3
+    ballData: {fileID: 11400000, guid: 88085d16202e5f44e984b8e3049cbcd1, type: 2}
+  - ballType: 4
+    ballData: {fileID: 11400000, guid: a863c76c62eb33c44a16013af01245e9, type: 2}

@@ -4,7 +4,7 @@ using WAS.EventBus;
 
 public class VehicleController : MonoBehaviour {
 
-    public VehicleState VehicleState;
+    public static VehicleState VehicleState;
     [SerializeField] private Transform pivot;
 
     [Header("Member RPM Stuff")]
@@ -59,6 +59,7 @@ public class VehicleController : MonoBehaviour {
     }
 
     private void LaunchWheelie(RevButtonReleased obj) {
+        GameEventBus.Fire(new LockBatRotation() { isLocked= true });
         VehicleState = VehicleState.StateWheelie;
         SetWheelieSpeed();
         SetWheelieAngle();
@@ -86,6 +87,7 @@ public class VehicleController : MonoBehaviour {
             rb.MoveRotation(currAngle);
             if (currAngle == wheelieAngle) {
                 VehicleState = VehicleState.StateReset;
+
             }
         } else if (VehicleState == VehicleState.StateReset) {
             currAngle -= wheelieResetSpeed * Time.fixedDeltaTime;
@@ -98,6 +100,7 @@ public class VehicleController : MonoBehaviour {
 
             if (currAngle == idleAngle && currentRPM == idleRPM) {
                 VehicleState = VehicleState.StateIdle;
+                GameEventBus.Fire(new LockBatRotation() { isLocked = false });
                 wheelieSpeed = 0f;
             }
         }
