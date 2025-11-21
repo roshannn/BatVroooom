@@ -33,7 +33,11 @@ public class VehicleController : MonoBehaviour {
     [SerializeField] private float wheelieResetSpeed;
     [SerializeField] private float rpmResetSpeed;
     [SerializeField] private float idleAngle = 0f;
+    
+    private Rigidbody2D rb;
+
     private void Awake() {
+        rb = pivot.GetComponent<Rigidbody2D>();
         UpdateRPM(idleRPM);
     }
     private void UpdateRPM(float rpm) {
@@ -72,23 +76,24 @@ public class VehicleController : MonoBehaviour {
 
 
 
-    private void Update() {
+    private void FixedUpdate() {
         if (VehicleState == VehicleState.StateRev) {
-            float calcRPM = currentRPM + (accelerationCurve.Evaluate(GetNormalizedRPM()) * accelerationFactor * Time.deltaTime);
+            float calcRPM = currentRPM + (accelerationCurve.Evaluate(GetNormalizedRPM()) * accelerationFactor * Time.fixedDeltaTime);
             UpdateRPM(calcRPM);
         } else if (VehicleState == VehicleState.StateWheelie) {
-            currAngle += wheelieSpeed * Time.deltaTime;
+            currAngle += wheelieSpeed * Time.fixedDeltaTime;
             currAngle = Mathf.Clamp(currAngle, idleAngle, wheelieAngle);
-            pivot.transform.eulerAngles = new Vector3(0, 0, currAngle);
+            rb.MoveRotation(currAngle);
             if (currAngle == wheelieAngle) {
                 VehicleState = VehicleState.StateReset;
             }
         } else if (VehicleState == VehicleState.StateReset) {
-            currAngle -= wheelieResetSpeed * Time.deltaTime;
+            currAngle -= wheelieResetSpeed * Time.fixedDeltaTime;
             currAngle = Mathf.Clamp(currAngle, idleAngle, wheelieAngle);
-            pivot.transform.eulerAngles = new Vector3(0, 0, currAngle);
+            rb.MoveRotation(currAngle);
+            
 
-            float calcRPM = currentRPM - (rpmResetSpeed * Time.deltaTime);
+            float calcRPM = currentRPM - (rpmResetSpeed * Time.fixedDeltaTime);
             UpdateRPM(calcRPM);
 
             if (currAngle == idleAngle && currentRPM == idleRPM) {

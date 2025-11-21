@@ -38,7 +38,7 @@ public class CollisionSystem : MonoBehaviour {
             float distFactor = (batBladeLength - Mathf.Abs(localContactPoint.y)) / batBladeLength;
             distFactor = Mathf.Clamp01(distFactor);
             float vibrationFactor = Mathf.Lerp(1f, 0.3f, distFactor);
-
+              
             multiplier *= vibrationFactor;
 
             Debug.Log($"Local Contact Point: {localContactPoint} | Distance from Center: {distFactor:F2} | VibrationFactor : {vibrationFactor}");

@@ -18,10 +18,10 @@ MonoBehaviour:
     time: 0.2
     pitchMaterial: {fileID: 6200000, guid: c3e48e2784770c9459b3cac02bb80285, type: 2}
   - ballType: 1
-    length: 0.2
-    time: 0.2
-    pitchMaterial: {fileID: 6200000, guid: c3e48e2784770c9459b3cac02bb80285, type: 2}
+    length: 0.4
+    time: 0.3
+    pitchMaterial: {fileID: 6200000, guid: 800c6e89f667c5347baec386d9499c0c, type: 2}
   - ballType: 2
-    length: 0.2
-    time: 0.2
-    pitchMaterial: {fileID: 6200000, guid: c3e48e2784770c9459b3cac02bb80285, type: 2}
+    length: 0.4
+    time: 0.3
+    pitchMaterial: {fileID: 6200000, guid: 800c6e89f667c5347baec386d9499c0c, type: 2}
