@@ -7,14 +7,23 @@ public class BallController : MonoBehaviour {
     public Vector3 ballDirection => ballRb.linearVelocity.normalized;
     public float ballMagnitude => ballRb.linearVelocity.magnitude;
 
+    public float GetCurrentDotOffset => currBallData.ballData.dotProductIncrement;
+    public float GetWheelieMultiplier => currBallData.ballData.wheelieSpeedMultiplier;
+
     [SerializeField] private Transform onSideWicket;
     [SerializeField] private Transform offSideWicket;
 
     [SerializeField] private BoxCollider2D pitchCollider;
 
     public BallDataContainer ballDataContainer;
+    public BallDataHolder currBallData;
+
+    public BallState currBallState;
+
     private Vector2 startPos;
+    public Vector2 PrevFixedFrameDirection;
     private void Awake() {
+        currBallState = BallState.BallIdle;
         startPos = transform.position;
     }
 
@@ -29,15 +38,16 @@ public class BallController : MonoBehaviour {
     }
 
     public void LaunchBall() {
-        BallData currBallData = ballDataContainer.GetBallData(Utility.GetRandomEnumValue<BallType>());
+        currBallState = BallState.BallBowled;
+        currBallData = ballDataContainer.GetBallData(Utility.GetRandomEnumValue<BallType>());
         Debug.Log($"Ball type: {currBallData.ballType}");
-        pitchCollider.sharedMaterial = currBallData.pitchMaterial;
+        pitchCollider.sharedMaterial = currBallData.ballData.pitchMaterial;
         transform.position = startPos;
-        Vector2 lengthPos = GetBouncePos(currBallData.length);
+        Vector2 lengthPos = GetBouncePos(currBallData.ballData.length);
 
         float xDis = lengthPos.x - startPos.x;
         float yDis = lengthPos.y - startPos.y;
-        float t = Mathf.Max(1e-4f, currBallData.time); 
+        float t = Mathf.Max(1e-4f, currBallData.ballData.time); 
 
         float g = Physics2D.gravity.y; // usually negative (~ -9.81)
 
@@ -72,8 +82,13 @@ public class BallController : MonoBehaviour {
             ResetToInitialPosition();
         }
     }
-
-    public void ResetBall() {
+    private void FixedUpdate() {
+        if(currBallState== BallState.BallBowled) {
+            PrevFixedFrameDirection = ballRb.linearVelocity;
+        }
+    }
+    public void ResetBall(BallState ballState = BallState.BallIdle) {
+        currBallState = ballState;
         ballRb.linearVelocity = Vector2.zero;
         ballRb.angularVelocity = 0;
     }
@@ -101,4 +116,8 @@ public class BallController : MonoBehaviour {
 
 public enum BallType {
     Short, Medium, GoodLength
+}
+
+public enum BallState {
+    BallIdle,BallBowled,BallShot
 }

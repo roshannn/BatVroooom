@@ -98,6 +98,7 @@ public class VehicleController : MonoBehaviour {
 
             if (currAngle == idleAngle && currentRPM == idleRPM) {
                 VehicleState = VehicleState.StateIdle;
+                wheelieSpeed = 0f;
             }
         }
     }

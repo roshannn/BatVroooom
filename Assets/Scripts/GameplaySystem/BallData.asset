@@ -14,14 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballData:
   - ballType: 0
-    length: 0.2
-    time: 0.2
-    pitchMaterial: {fileID: 6200000, guid: c3e48e2784770c9459b3cac02bb80285, type: 2}
+    ballData: {fileID: 11400000, guid: 3f87284325604d3428193ae52e4e302e, type: 2}
   - ballType: 1
-    length: 0.4
-    time: 0.3
-    pitchMaterial: {fileID: 6200000, guid: 800c6e89f667c5347baec386d9499c0c, type: 2}
+    ballData: {fileID: 11400000, guid: 4c7e805f96bd61243b0dd9153cea7ad4, type: 2}
   - ballType: 2
-    length: 0.4
-    time: 0.3
-    pitchMaterial: {fileID: 6200000, guid: 800c6e89f667c5347baec386d9499c0c, type: 2}
+    ballData: {fileID: 11400000, guid: 0b716013d9af00f4781579856798ea86, type: 2}

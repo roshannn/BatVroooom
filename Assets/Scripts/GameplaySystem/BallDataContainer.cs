@@ -4,19 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu(menuName="Settings/BallData",fileName = "BallData")]
+[CreateAssetMenu(menuName="Settings/BallDataContainer",fileName = "BallDataContainer")]
 public class BallDataContainer : ScriptableObject
 {
-	public List<BallData> ballData;
+	public List<BallDataHolder> ballData;
 
-	public BallData GetBallData(BallType ballType) {
+	public BallDataHolder GetBallData(BallType ballType) {
 		return ballData.Find(x => x.ballType == ballType);
 	}
 }
 [Serializable]
-public class BallData {
+public class BallDataHolder {
 	public BallType ballType;
-	public float length;
-	public float time;
-	public PhysicsMaterial2D pitchMaterial;
+	public BallData ballData;
 }
