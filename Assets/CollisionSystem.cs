@@ -1,6 +1,7 @@
 using System;
 using UnityEditor;
 using UnityEngine;
+using WAS.EventBus;
 
 public class CollisionSystem : MonoBehaviour {
     private Collision2D coll;
@@ -13,6 +14,7 @@ public class CollisionSystem : MonoBehaviour {
     Vector2 ballDir;
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.TryGetComponent<BallController>(out BallController ball)) {
+            GameEventBus.Fire(new LockBatRotation() { isLocked = false});
             coll = collision;
             this.ball = ball;
             Debug.Log($"Old Speed: {ball.ballRb.linearVelocity.magnitude}| Bat Speed : {collision.otherRigidbody.angularVelocity}");

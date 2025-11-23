@@ -82,6 +82,7 @@ public class VehicleController : MonoBehaviour {
             float calcRPM = currentRPM + (accelerationCurve.Evaluate(GetNormalizedRPM()) * accelerationFactor * Time.fixedDeltaTime);
             UpdateRPM(calcRPM);
         } else if (VehicleState == VehicleState.StateWheelie) {
+            GameEventBus.Fire(new LockWheelieRecharge() { isLocked = true });
             currAngle += wheelieSpeed * Time.fixedDeltaTime;
             currAngle = Mathf.Clamp(currAngle, idleAngle, wheelieAngle);
             rb.MoveRotation(currAngle);
@@ -101,6 +102,7 @@ public class VehicleController : MonoBehaviour {
             if (currAngle == idleAngle && currentRPM == idleRPM) {
                 VehicleState = VehicleState.StateIdle;
                 GameEventBus.Fire(new LockBatRotation() { isLocked = false });
+                GameEventBus.Fire(new LockWheelieRecharge() { isLocked = false });
                 wheelieSpeed = 0f;
             }
         }

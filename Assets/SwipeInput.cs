@@ -38,6 +38,7 @@ public class SwipeInput : MonoBehaviour {
                 swipeActive = true;
                 lastPos = Input.mousePosition;
             }
+            
         }
 
         if (Input.GetMouseButton(0) && swipeActive) {
@@ -58,36 +59,46 @@ public class SwipeInput : MonoBehaviour {
     }
 
     // ---------------- TOUCH ----------------
+    // ---------------- TOUCH ----------------
+    private int swipeFingerId = -1;
+
     void HandleTouch() {
         if (Input.touchCount == 0) return;
-        Touch t = Input.GetTouch(0);
 
-        if (t.phase == TouchPhase.Began) {
-            if (IsLeftHalf(t.position)) {
-                swipeActive = true;
-                lastPos = t.position;
-            }
-        }
+        for (int i = 0; i < Input.touchCount; i++) {
+            Touch t = Input.GetTouch(i);
 
-        if (t.phase == TouchPhase.Moved && swipeActive) {
-
-            Vector2 current = t.position;
-            float deltaX = current.x - lastPos.x;
-            if (!isLocked) {
-                currValue += (deltaX * sensitivity);
-                currValue = Mathf.Clamp01(currValue);
-                GameEventBus.Fire(new SetBatRotation() { value = currValue });
+            if (t.phase == TouchPhase.Began && !swipeActive) {
+                if (IsLeftHalf(t.position)) {
+                    swipeActive = true;
+                    lastPos = t.position;
+                    swipeFingerId = t.fingerId;
+                }
             }
 
-            lastPos = current;
-        }
+            if (swipeActive && t.fingerId == swipeFingerId) {
+                if (t.phase == TouchPhase.Moved) {
+                    Vector2 current = t.position;
+                    float deltaX = current.x - lastPos.x;
+                    if (!isLocked) {
+                        currValue += (deltaX * sensitivity);
+                        currValue = Mathf.Clamp01(currValue);
+                        GameEventBus.Fire(new SetBatRotation() { value = currValue });
+                    }
+                    lastPos = current;
+                }
 
-        if (t.phase == TouchPhase.Ended || t.phase == TouchPhase.Canceled) {
-            swipeActive = false;
+                if (t.phase == TouchPhase.Ended || t.phase == TouchPhase.Canceled) {
+                    swipeActive = false;
+                    swipeFingerId = -1;
+                }
+            }
         }
     }
 
     bool IsLeftHalf(Vector2 pos) {
         return pos.x < Screen.width * 0.5f;
     }
+
+   
 }
