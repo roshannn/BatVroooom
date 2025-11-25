@@ -9,7 +9,6 @@ public class VehicleController : MonoBehaviour {
 
     [Header("Member RPM Stuff")]
     [SerializeField] private float currentRPM;
-    [SerializeField] private RevButtonController revButton;
     [SerializeField] private FillBarController fillBar;
 
     //current turn data
