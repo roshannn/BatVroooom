@@ -3,8 +3,6 @@ using WAS.EventBus;
 
 public class TimingInputHandler : MonoBehaviour
 {
-    private bool isLocked = false;
-    private bool isTapActive = false;
     private void OnEnable() {
         Input.multiTouchEnabled = true;
 
@@ -38,7 +36,7 @@ public class TimingInputHandler : MonoBehaviour
         for (int i = 0; i < Input.touchCount; i++) {
             Touch t = Input.GetTouch(i);
 
-            if (t.phase == TouchPhase.Began && !isTapActive) {
+            if (t.phase == TouchPhase.Began) {
                 if (IsLeftHalf(t.position)) {
                     Debug.Log("Left Side Tapped");
                 }
