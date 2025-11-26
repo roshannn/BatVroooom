@@ -4,7 +4,6 @@ using WAS.EventBus;
 public class TimingInputHandler : MonoBehaviour
 {
     private void OnEnable() {
-        Input.multiTouchEnabled = true;
 
     }
     private void OnDisable() {
@@ -22,10 +21,8 @@ public class TimingInputHandler : MonoBehaviour
     }
 
     void HandleMouse() {
-        if (Input.GetMouseButtonDown(0)) {
-            if(IsLeftHalf(Input.mousePosition)){
-                Debug.Log("Left Side Tapped");
-            }
+        if (Input.GetKeyDown(KeyCode.Space)||(Input.GetMouseButtonDown(0)&& IsLeftHalf(Input.mousePosition))) {
+            GameEventBus.Fire(new WheelieTriggered());
         }
     }
 
@@ -38,7 +35,7 @@ public class TimingInputHandler : MonoBehaviour
 
             if (t.phase == TouchPhase.Began) {
                 if (IsLeftHalf(t.position)) {
-                    Debug.Log("Left Side Tapped");
+                    GameEventBus.Fire(new WheelieTriggered());
                 }
             }
 

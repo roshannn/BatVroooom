@@ -7,3 +7,5 @@ public struct SetBatRotation { public float value; }
 
 public struct LockBatRotation { public bool isLocked; }
 public struct LockWheelieRecharge { public bool isLocked; }
+
+public struct WheelieTriggered { }

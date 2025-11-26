@@ -1806,6 +1806,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1426398778}
   - component: {fileID: 1426398777}
+  - component: {fileID: 1426398779}
   m_Layer: 0
   m_Name: Vehicle
   m_TagString: Untagged
@@ -1820,7 +1821,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1426398776}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d006dbc08655e2744a0d89f1658873bc, type: 3}
   m_Name: 
@@ -1954,6 +1955,28 @@ Transform:
   - {fileID: 752388485}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1426398779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426398776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8ea62256d55b6647a2c78e501b9fd69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bikeData:
+    minRpm: 1000
+    maxRpm: 10000
+    rpmIncreaseRate: 10000
+    rpmDecayRate: 20000
+    maxWheelieAngle: 45
+    wheelieRotationSpeed: 100
+    wheelieRotationDecay: 50
+  currRPM: 0
+  wheeliePivot: {fileID: 752388485}
 --- !u!1 &1481819878
 GameObject:
   m_ObjectHideFlags: 0
@@ -2330,11 +2353,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7901459683744240474, guid: 9f0301ea7976e8c4c8d8f346ebfc71eb, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1.56
+      value: 1.58
       objectReference: {fileID: 0}
     - target: {fileID: 7901459683744240474, guid: 9f0301ea7976e8c4c8d8f346ebfc71eb, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 16.3
+      value: 16.34
       objectReference: {fileID: 0}
     - target: {fileID: 8037317473837824064, guid: 9f0301ea7976e8c4c8d8f346ebfc71eb, type: 3}
       propertyPath: m_LocalScale.x
