@@ -556,6 +556,7 @@ GameObject:
   - component: {fileID: 571436606}
   - component: {fileID: 571436607}
   - component: {fileID: 571436608}
+  - component: {fileID: 571436609}
   m_Layer: 0
   m_Name: Pitch
   m_TagString: Untagged
@@ -679,6 +680,22 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &571436609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 571436605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b117fdb7ed109842b5ec3fe6d7907ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onSideWicket: {fileID: 1375807994}
+  offSideWicket: {fileID: 1893874488}
+  pitchTransform: {fileID: 571436606}
+  pitchCollider: {fileID: 571436608}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -950,6 +967,7 @@ GameObject:
   - component: {fileID: 712101136}
   - component: {fileID: 712101135}
   - component: {fileID: 712101137}
+  - component: {fileID: 712101138}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Ball
@@ -1097,7 +1115,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 712101131}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2aa70617e02028a4aa76b5bff77b8db9, type: 3}
   m_Name: 
@@ -1106,12 +1124,35 @@ MonoBehaviour:
   onSideWicket: {fileID: 1375807994}
   offSideWicket: {fileID: 1893874488}
   pitchCollider: {fileID: 571436608}
+  ballPathPredictor: {fileID: 0}
   ballDataContainer: {fileID: 11400000, guid: 99e02435b12b5b34f94f9105ee77eab4, type: 2}
   currBallData:
     ballType: 0
     ballData: {fileID: 0}
   currBallState: 0
   PrevFixedFrameDirection: {x: 0, y: 0}
+--- !u!114 &712101138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 712101131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0feee5fbce8ad334ebb9f0cf05909b49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ballRb: {fileID: 712101136}
+  ballCollider: {fileID: 712101135}
+  ballDataContainer: {fileID: 11400000, guid: 99e02435b12b5b34f94f9105ee77eab4, type: 2}
+  currBallType: 0
+  currBallData:
+    ballType: 0
+    ballData: {fileID: 0}
+  PrevFixedFrameDirection: {x: 0, y: 0}
+  isDebug: 1
+  debugBallType: 0
 --- !u!1 &750779153
 GameObject:
   m_ObjectHideFlags: 0
@@ -1441,6 +1482,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1347103028 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7954942388287204619, guid: 9f0301ea7976e8c4c8d8f346ebfc71eb, type: 3}
+  m_PrefabInstance: {fileID: 3689136932472876315}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1347103033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1347103028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98b0f5ccc2d69c44493823c7b7dcc897, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1363916984
 GameObject:
   m_ObjectHideFlags: 0
@@ -2324,6 +2382,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1830472646}
     m_Modifications:
     - target: {fileID: 579600041532549537, guid: 9f0301ea7976e8c4c8d8f346ebfc71eb, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 579600041532549537, guid: 9f0301ea7976e8c4c8d8f346ebfc71eb, type: 3}
       propertyPath: ballController
       value: 
       objectReference: {fileID: 712101137}
@@ -2342,6 +2404,10 @@ PrefabInstance:
     - target: {fileID: 7901459683744240474, guid: 9f0301ea7976e8c4c8d8f346ebfc71eb, type: 3}
       propertyPath: m_Size.y
       value: 11.147173
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901459683744240474, guid: 9f0301ea7976e8c4c8d8f346ebfc71eb, type: 3}
+      propertyPath: m_Material
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7901459683744240474, guid: 9f0301ea7976e8c4c8d8f346ebfc71eb, type: 3}
       propertyPath: m_Offset.x
@@ -2415,10 +2481,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bat
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 579600041532549537, guid: 9f0301ea7976e8c4c8d8f346ebfc71eb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7954942388287204619, guid: 9f0301ea7976e8c4c8d8f346ebfc71eb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1347103033}
   m_SourcePrefab: {fileID: 100100000, guid: 9f0301ea7976e8c4c8d8f346ebfc71eb, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

@@ -14,6 +14,7 @@ public class BallController : MonoBehaviour {
     [SerializeField] private Transform offSideWicket;
 
     [SerializeField] private BoxCollider2D pitchCollider;
+    [SerializeField] private BallPathPredictor ballPathPredictor;
 
     public BallDataContainer ballDataContainer;
     public BallDataHolder currBallData;
@@ -41,7 +42,7 @@ public class BallController : MonoBehaviour {
         currBallState = BallState.BallBowled;
         currBallData = ballDataContainer.GetBallData(Utility.GetRandomEnumValue<BallType>());
         Debug.Log($"Ball type: {currBallData.ballType}");
-        pitchCollider.sharedMaterial = currBallData.ballData.pitchMaterial;
+        //pitchCollider.sharedMaterial = currBallData.ballData.pitchMaterial;
         transform.position = startPos;
         Vector2 lengthPos = GetBouncePos(currBallData.ballData.length);
 
@@ -63,6 +64,10 @@ public class BallController : MonoBehaviour {
 
         ballRb.linearVelocity = new Vector2(vx, vy);
 
+        //if (ballPathPredictor != null)
+        //{
+        //    ballPathPredictor.VisualizePath(transform.position, ballRb.linearVelocity, currBallData.ballData.pitchMaterial);
+        //}
     }
 
     GameObject debug;
@@ -91,6 +96,10 @@ public class BallController : MonoBehaviour {
         currBallState = ballState;
         ballRb.linearVelocity = Vector2.zero;
         ballRb.angularVelocity = 0;
+        if (ballPathPredictor != null)
+        {
+            ballPathPredictor.ClearPath();
+        }
     }
 
     private void ResetToInitialPosition() {
@@ -100,7 +109,7 @@ public class BallController : MonoBehaviour {
     public Vector2 GetBouncePos(float length01) {
         float t = Mathf.Clamp01(length01);
         Vector2 a = offSideWicket.position;
-        a.y = -4.5f;
+        a.y = -4.35f;
         Vector2 b = onSideWicket.position;
         b.y = -4.5f;
 
