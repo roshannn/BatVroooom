@@ -10,10 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b2aa6ae0093abd45b9a282979523256, type: 3}
-  m_Name: ShortBall
+  m_Name: Variation2
   m_EditorClassIdentifier: 
-  length: 0.2
-  time: 0.2
+  length: 0.5
+  time: 0.8
+  ballPhysics:
+    friction: 0
+    bounciness: 0
+  pitchPhysics:
+    friction: -0.1
+    bounciness: 1.2
+    bouncinessCombine: 0
+    frictionCombine: 0
   dotProductIncrement: 0.5
   wheelieSpeedMultiplier: 1
-  pitchMaterial: {fileID: 6200000, guid: c3e48e2784770c9459b3cac02bb80285, type: 2}

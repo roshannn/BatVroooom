@@ -14,6 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   length: 0.15
   time: 0.18
+  ballPhysics:
+    friction: 0
+    bounciness: 0
+  pitchPhysics:
+    friction: 0.6
+    bounciness: 0.6
+    bouncinessCombine: 0
+    frictionCombine: 0
   dotProductIncrement: 0.25
   wheelieSpeedMultiplier: 1
-  pitchMaterial: {fileID: 6200000, guid: c6b91289bf937c04aa8179aa1dd82e67, type: 2}
