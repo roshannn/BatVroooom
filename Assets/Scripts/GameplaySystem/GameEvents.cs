@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public struct RevButtonPressed {}
 public struct RevButtonReleased {}
 
@@ -9,3 +11,8 @@ public struct LockBatRotation { public bool isLocked; }
 public struct LockWheelieRecharge { public bool isLocked; }
 
 public struct WheelieTriggered { }
+
+public struct GetBouncePos {
+    public float value01;
+    public CircleCollider2D ballCollider;
+}

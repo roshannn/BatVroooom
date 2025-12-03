@@ -7,7 +7,20 @@ using UnityEngine;
 public class BallData : ScriptableObject {
     public float length;
     public float time;
+    public PhysicsData ballPhysics;
+    public PitchPhysicsData pitchPhysics;
     public float dotProductIncrement;
     public float wheelieSpeedMultiplier;
-    public PhysicsMaterial2D pitchMaterial;
+
+    [System.Serializable]
+    public class PhysicsData {
+        public float friction;
+        public float bounciness;
+    }
+
+    [System.Serializable]
+    public class PitchPhysicsData : PhysicsData {
+        public PhysicsMaterialCombine2D bouncinessCombine;
+        public PhysicsMaterialCombine2D frictionCombine;
+    }
 }
