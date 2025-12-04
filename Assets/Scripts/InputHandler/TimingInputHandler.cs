@@ -22,7 +22,7 @@ public class TimingInputHandler : MonoBehaviour
 
     void HandleMouse() {
         if (Input.GetKeyDown(KeyCode.Space)||(Input.GetMouseButtonDown(0)&& IsLeftHalf(Input.mousePosition))) {
-            GameEventBus.Fire(new WheelieTriggered());
+            GameEventBus.Fire(new WheelieTriggered() { isWheelie = true });
         }
     }
 
@@ -35,7 +35,7 @@ public class TimingInputHandler : MonoBehaviour
 
             if (t.phase == TouchPhase.Began) {
                 if (IsLeftHalf(t.position)) {
-                    GameEventBus.Fire(new WheelieTriggered());
+                    GameEventBus.Fire(new WheelieTriggered() { isWheelie = true });
                 }
             }
 

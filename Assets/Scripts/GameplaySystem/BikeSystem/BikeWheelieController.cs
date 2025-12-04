@@ -60,7 +60,7 @@ public class BikeWheelieController : MonoBehaviour
         } else {
             currRPM = Mathf.MoveTowards(currRPM, bikeData.minRpm, bikeData.rpmDecayRate * Time.deltaTime);
         }
-        GameEventBus.Fire(new UpdateRPM() { currAmount = currRPM, maxAmount = bikeData.maxRpm });
+        GameEventBus.Fire(new UpdateRPM() {minAmount = bikeData.minRpm, currAmount = currRPM, maxAmount = bikeData.maxRpm });
     }
 
     private void HandleWheelie()
@@ -72,17 +72,19 @@ public class BikeWheelieController : MonoBehaviour
             if (currentWheelieAngle >= bikeData.maxWheelieAngle) {
                 currentWheelieAngle = bikeData.maxWheelieAngle;
                 hasReachedMaxAngle = true;
+                GameEventBus.Fire(new WheelieRPMChange() { revChangeSpeed = bikeData.wheelieSoundPitchData.wheeliePitchResetSpeed, revOffset = bikeData.wheelieSoundPitchData.wheeliePitchResetOffset });
             }
             SetWheelieAngle(currentWheelieAngle);
             return;
         } else {
-            // Rotate down (if not revving OR if we hit max angle)
+
             currentWheelieAngle -= bikeData.wheelieRotationDecay * Time.deltaTime;
             if (currentWheelieAngle < 0f)
             {
                 currentWheelieAngle = 0f;
-                isWheelie = false;
                 hasReachedMaxAngle = false;
+                GameEventBus.Fire(new WheelieTriggered() { isWheelie = false });
+                canTriggerPitchOffset = true;
             }
             SetWheelieAngle(currentWheelieAngle);
         }
@@ -103,7 +105,15 @@ public class BikeWheelieController : MonoBehaviour
     }
 
     private void TriggerWheelie(WheelieTriggered data) {
-        isWheelie = true;
+        isWheelie = data.isWheelie;
+        TriggerPitchOffset();
     }
 
+    bool canTriggerPitchOffset = true;
+    private void TriggerPitchOffset() {
+        if (isWheelie && canTriggerPitchOffset) {
+            GameEventBus.Fire(new WheelieRPMChange() { revOffset = bikeData.wheelieSoundPitchData.wheeliePitchIncreaseOffset, revChangeSpeed = bikeData.wheelieSoundPitchData.wheeliePitchIncreaseSpeed });
+            canTriggerPitchOffset = false;
+        }
+    }
 }

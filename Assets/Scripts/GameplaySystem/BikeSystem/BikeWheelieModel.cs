@@ -13,4 +13,13 @@ public class BikeWheelieModel
 	public float wheelieRotationSpeed;
 	public float wheelieRotationDecay;
 
+    public WheelieSoundPitchData wheelieSoundPitchData;
+}
+
+[System.Serializable]
+public class WheelieSoundPitchData {
+    public float wheeliePitchIncreaseOffset;
+    public float wheeliePitchIncreaseSpeed;
+    public float wheeliePitchResetOffset;
+    public float wheeliePitchResetSpeed;
 }

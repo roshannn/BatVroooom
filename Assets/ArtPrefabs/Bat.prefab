@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4860699545494420205}
   - component: {fileID: 734518003501779523}
   - component: {fileID: 7901459683744240474}
-  - component: {fileID: 579600041532549537}
+  - component: {fileID: 717339214956647603}
   m_Layer: 0
   m_Name: BatBlade
   m_TagString: Untagged
@@ -135,7 +135,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.8691567, y: 15.623784}
   m_EdgeRadius: 0
---- !u!114 &579600041532549537
+--- !u!114 &717339214956647603
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,12 +144,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7954942388287204619}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a006ec7c9dfe864aa0a4f62d6c4359f, type: 3}
+  m_Script: {fileID: 11500000, guid: 98b0f5ccc2d69c44493823c7b7dcc897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vehicleController: {fileID: 0}
-  batBladeCollider: {fileID: 7901459683744240474}
-  ballController: {fileID: 0}
 --- !u!1 &8279424658381173257
 GameObject:
   m_ObjectHideFlags: 0
